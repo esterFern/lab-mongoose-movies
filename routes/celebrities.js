@@ -22,8 +22,14 @@ mongoose.connect('mongodb://localhost/movies', {
 //   .catch(err => console.log(err));
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+
+router.get('/index', async (req, res, next) => {
+  try {
+    const celebrities = await Celebrity.find();
+    res.render('celebrities/index', { celebrities });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
