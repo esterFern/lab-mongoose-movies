@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Celebrity = require('../models/Celebrity');
+const Movie = require('../models/Movie');
 
 mongoose.connect('mongodb://localhost/movies', {
   keepAlive: true,
@@ -13,33 +13,33 @@ mongoose.connect('mongodb://localhost/movies', {
 
 router.get('/', async (req, res, next) => {
   try {
-    const celebrities = await Celebrity.find();
-    res.render('celebrities/index', { celebrities });
+    const movies = await Movie.find();
+    res.render('movies/index', { movies });
   } catch (error) {
     next(error);
   }
 });
 
 router.post('/', async (req, res, next) => {
-  const { name, occupation, catchPhrase } = req.body;
-  const celebrity = { name, occupation, catchPhrase };
+  const { title, genre, plot } = req.body;
+  const movie = { title, genre, plot };
   try {
-    await Celebrity.create(celebrity);
-    res.redirect('/celebrities');
+    await Movie.create(movie);
+    res.redirect('/movies');
   } catch (error) {
     next(error);
   };
 });
 
 router.get('/new', (req, res, next) => {
-  res.render('celebrities/new');
+  res.render('movies/new');
 });
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params;
   try {
-    const celebrity = await Celebrity.findById(id);
-    res.render('celebrities/show', { celebrity });
+    const movie = await Movie.findById(id);
+    res.render('movies/show', { movie });
   } catch (error) {
     next(error);
   }
@@ -47,11 +47,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
   const { id } = req.params;
-  const { name, occupation, catchPhrase } = req.body;
-  const celebrity = { name, occupation, catchPhrase };
+  const { title, genre, plot } = req.body;
+  const movie = { title, genre, plot };
   try {
-    await Celebrity.findByIdAndUpdate(id, celebrity);
-    res.redirect('/celebrities');
+    await Movie.findByIdAndUpdate(id, movie);
+    res.redirect('/movies');
   } catch (error) {
     next(error);
   }
@@ -60,8 +60,8 @@ router.post('/:id', async (req, res, next) => {
 router.get('/:id/edit', async (req, res, next) => {
   const { id } = req.params;
   try {
-    const celebrity = await Celebrity.findById(id);
-    res.render('celebrities/edit', { celebrity });
+    const movie = await Movie.findById(id);
+    res.render('movies/edit', { movie });
   } catch (error) {
     next(error);
   };
@@ -70,10 +70,11 @@ router.get('/:id/edit', async (req, res, next) => {
 router.post('/:id/delete', async (req, res, next) => {
   const { id } = req.params;
   try {
-    await Celebrity.findByIdAndDelete(id);
-    res.redirect('/celebrities');
+    await Movie.findByIdAndDelete(id);
+    res.redirect('/movies');
   } catch (error) {
     next(error);
   };
 });
+
 module.exports = router;

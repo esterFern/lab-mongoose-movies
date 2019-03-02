@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const celebritiesRouter = require('./routes/celebrities');
+const moviesRouter = require('./routes/movies');
 const app = express();
 
 mongoose.connect('mongodb://localhost/movies', {
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/celebrities', celebritiesRouter);
+app.use('/movies', moviesRouter);
 
 // -- 404 and error handler
 
