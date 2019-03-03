@@ -6,3 +6,51 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+li{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  
+}
+
+.edit-delete{
+  display: flex;
+  width: 200px;
+  justify-content: center;
+ 
+}
+
+h1, h2{
+  margin-bottom: 50px;
+}
+.list{
+  width:30%;
+  margin: 50px 0;
+}
+
+.button{
+  text-decoration: none;
+  color: white;
+  border: none; 
+  background-color: rgb(78, 191, 226);
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.button-back{
+  text-decoration: none;
+  color: white;
+  border: none; 
+  background-color: rgb(55, 121, 121);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 100px;
+  
+}
+
+.section{
+  margin: 50px 0;
+}

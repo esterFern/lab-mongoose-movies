@@ -1,16 +1,19 @@
 <h2>Movies</h2>
-<ul>
-{{#each movies}}
-<li>
-  <a href="/movies/{{this.id}}">{{this.title}}</a>
-  <a href="/movies/{{this.id}}/edit">Edit</a>
-  <form action="/movies/{{this.id}}/delete" method="POST">
-    <button type="submit">Delete</button>
-  </form>
-</li>
-{{/each}}
+<a href="/movies/new" class="button"> Create new</a>
+<ul class="list">
+  {{#each movies}}
+  <li>
+    <a href="/movies/{{this.id}}">{{this.title}}</a>
+    <div class="edit-delete">
+      <a href="/movies/{{this.id}}/edit" class="button">Edit</a>
+      <form action="/movies/{{this.id}}/delete" method="POST">
+        <button type="submit" class="button">Delete</button>
+      </form>
+    </div>
+  </li>
+  {{/each}}
 </ul>
 
-<a href="/movies/new"> Create new</a>
+<a href="/" class="button-back"> Back</a>
 
-<a href="/"> Back</a>
+
